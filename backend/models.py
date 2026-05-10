@@ -49,6 +49,23 @@ class Lesson(Base):
 
     world = relationship("World", back_populates="lessons")
     progress = relationship("UserProgress", back_populates="lesson")
+    exercises = relationship("Exercise", back_populates="lesson", order_by="Exercise.order")
+
+
+class Exercise(Base):
+    __tablename__ = "exercises"
+
+    id = Column(Integer, primary_key=True, index=True)
+    lesson_id = Column(Integer, ForeignKey("lessons.id"), nullable=False)
+    order = Column(Integer, nullable=False)
+    description = Column(String, nullable=False)
+    starter_code = Column(Text, nullable=False)
+    expected_output = Column(String, nullable=False)
+    hint = Column(Text, nullable=False)
+    xp_reward = Column(Integer, default=25)
+    is_final = Column(Boolean, default=False)
+
+    lesson = relationship("Lesson", back_populates="exercises")
 
 
 class UserProgress(Base):

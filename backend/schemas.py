@@ -31,6 +31,21 @@ class Token(BaseModel):
     user: UserOut
 
 
+class ExerciseOut(BaseModel):
+    id: int
+    lesson_id: int
+    order: int
+    description: str
+    starter_code: str
+    expected_output: str
+    hint: str
+    xp_reward: int
+    is_final: bool
+
+    class Config:
+        from_attributes = True
+
+
 class LessonOut(BaseModel):
     id: int
     world_id: int
@@ -43,6 +58,7 @@ class LessonOut(BaseModel):
     hint: str
     xp_reward: int
     is_final_project: bool
+    exercises: List[ExerciseOut] = []
 
     class Config:
         from_attributes = True
@@ -75,7 +91,8 @@ class UserProgressOut(BaseModel):
 
 class CodeRunRequest(BaseModel):
     code: str
-    lesson_id: int
+    lesson_id: Optional[int] = None
+    exercise_id: Optional[int] = None
 
 
 class CodeRunResult(BaseModel):

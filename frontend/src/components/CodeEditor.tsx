@@ -27,7 +27,7 @@ export function CodeEditor({ value, onChange, height = "400px", readOnly = false
         <div className="w-3 h-3 rounded-full bg-red-500" />
         <div className="w-3 h-3 rounded-full bg-yellow-500" />
         <div className="w-3 h-3 rounded-full bg-green-500" />
-        <span className="ml-2 text-slate-400 text-xs font-mono">main.c</span>
+        <span className="ml-2 text-slate-400 text-sm font-mono">main.c</span>
       </div>
       <MonacoEditor
         height={height}
@@ -37,7 +37,8 @@ export function CodeEditor({ value, onChange, height = "400px", readOnly = false
         onChange={(v) => onChange(v ?? "")}
         onMount={handleEditorDidMount}
         options={{
-          fontSize: 15,
+          fontSize: 22,
+          lineHeight: 32,
           fontFamily: "'JetBrains Mono', 'Fira Code', Consolas, monospace",
           minimap: { enabled: false },
           scrollBeyondLastLine: false,

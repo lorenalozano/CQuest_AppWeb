@@ -1,4 +1,4 @@
-import { AuthToken, World, Lesson, CodeRunResult, ProgressSummary, UserProgress } from "./types";
+import { AuthToken, World, Lesson, CodeRunResult, ProgressSummary, UserProgress, Exercise } from "./types";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -46,10 +46,10 @@ export const api = {
   },
 
   code: {
-    run: (code: string, lesson_id: number) =>
+    run: (code: string, opts: { lesson_id?: number; exercise_id?: number }) =>
       request<CodeRunResult>("/code/run", {
         method: "POST",
-        body: JSON.stringify({ code, lesson_id }),
+        body: JSON.stringify({ code, ...opts }),
       }),
   },
 

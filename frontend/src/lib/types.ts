@@ -12,6 +12,18 @@ export interface AuthToken {
   user: User;
 }
 
+export interface Exercise {
+  id: number;
+  lesson_id: number;
+  order: number;
+  description: string;
+  starter_code: string;
+  expected_output: string;
+  hint: string;
+  xp_reward: number;
+  is_final: boolean;
+}
+
 export interface Lesson {
   id: number;
   world_id: number;
@@ -24,6 +36,7 @@ export interface Lesson {
   hint: string;
   xp_reward: number;
   is_final_project: boolean;
+  exercises: Exercise[];
 }
 
 export interface World {
